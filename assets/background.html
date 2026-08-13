@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background — Lea Goerl</title>
+  <meta name="description" content="Background — Lea Goerl." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="frame">
+    <div class="inner">
+
+      <!-- NAV -->
+      <nav>
+        <a class="brand" href="index.html">
+          <span class="mark" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M13 3.5v6M13 16.5v6M3.5 13h6M16.5 13h6M6.2 6.2l4.2 4.2M15.6 15.6l4.2 4.2M19.8 6.2l-4.2 4.2M10.4 15.6l-4.2 4.2"/>
+              </g>
+              <circle cx="13" cy="13" r="2.4" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>Lea</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="background.html" class="active">Background</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="updates.html">Updates</a></li>
+        </ul>
+
+        <button class="cta" type="button" data-contact>
+          Get in Touch
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M4 11L11 4M11 4H5M11 4v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- PAGE -->
+      <section class="page">
+        <p class="page-eyebrow">Lea Goerl</p>
+        <h1 class="page-title">Background<em>.</em></h1>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ================= Contact popup ================= -->
+  <div class="modal" id="contactModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <button class="modal-close" data-close aria-label="Close">&times;</button>
+      <h2 id="contactTitle">Get in touch</h2>
+      <p class="modal-sub">I&rsquo;d love to hear from you.</p>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:hello@example.com">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            hello@example.com
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 8.98h4V21H3V8.98zM9 8.98h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.36c0-1.28-.02-2.93-1.78-2.93-1.78 0-2.05 1.39-2.05 2.83V21H9V8.98z"/></svg>
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="assets/contact.js"></script>
+</body>
+</html>

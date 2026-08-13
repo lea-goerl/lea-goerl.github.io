@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lea Goerl — Product Manager &amp; Computer Scientist</title>
+  <meta name="description" content="Building technology around humans. Product thinking, engineering and research — combined to create technology that feels simple, useful and human." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --green:        #1f4a33;
+      --green-soft:   #2f6b4a;
+      --ink:          #14140f;
+      --ink-2:        #43443d;
+      --muted:        #6b6c63;
+      --panel:        #f3f4ee;
+      --panel-2:      #eceee6;
+      --line:         #d9dccf;
+      --outer:        #dfe3da;
+      --cream:        #f6f6f1;
+      --chip-line:    #cbcec2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background:
+        radial-gradient(120% 120% at 50% 0%, #e6e9e0 0%, var(--outer) 60%, #d7dbd1 100%);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------- adaptive frame ---------- */
+    .frame {
+      position: fixed;
+      inset: 16px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 28px;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.7) inset,
+        0 20px 50px -20px rgba(30,50,35,.28),
+        0 4px 14px -8px rgba(30,50,35,.18);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(20px, 3vw, 44px) clamp(22px, 4vw, 64px);
+      min-height: 0;
+    }
+
+    /* ---------- nav ---------- */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+    .brand .mark { color: var(--green); display: grid; place-items: center; }
+    .brand .mark svg { display: block; }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(20px, 2.6vw, 44px);
+      list-style: none;
+    }
+    .nav-links a {
+      position: relative;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 4px 0;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a.active { color: var(--green); }
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--green);
+      transform: translateX(-50%);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 13px 22px;
+      border-radius: 12px;
+      transition: transform .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .cta:hover { background: #163a28; transform: translateY(-1px); }
+    .cta svg { display: block; }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      flex: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+      align-items: center;
+      gap: clamp(24px, 4vw, 56px);
+      padding: clamp(24px, 4vh, 64px) 0 clamp(20px, 3vh, 40px);
+      min-height: 0;
+    }
+
+    /* live network animation behind the whole hero */
+    #hero-net {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-text, .hero-graphic {
+      position: relative;
+      z-index: 1;
+    }
+    .greet {
+      color: var(--green-soft);
+      font-size: clamp(17px, 1.5vw, 20px);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .headline {
+      font-size: clamp(58px, 9vw, 128px);
+      line-height: .95;
+      letter-spacing: -.03em;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 22px;
+    }
+    .headline em { font-style: normal; color: var(--green); }
+
+    .role {
+      font-size: clamp(19px, 1.9vw, 26px);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 20px;
+      letter-spacing: -.01em;
+    }
+    .lede {
+      font-size: clamp(15px, 1.25vw, 18px);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 30em;
+      margin-bottom: 34px;
+    }
+    .lede strong { color: var(--ink-2); font-weight: 500; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 11px 20px;
+      border: 1px solid var(--chip-line);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink-2);
+      background: rgba(255,255,255,.35);
+    }
+
+    /* ---------- hero graphic ---------- */
+    .hero-graphic {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: clamp(320px, 46vh, 620px);
+    }
+    .hero-graphic .net-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ---------- stats ---------- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(16px, 2.5vw, 40px);
+      padding-top: clamp(20px, 2.6vh, 34px);
+      border-top: 1px solid var(--line);
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .stat .ic {
+      flex: none;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--panel-2);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+    }
+    .stat .num {
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .stat .lbl {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 1040px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-graphic { display: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    }
+    @media (max-width: 760px) {
+      .frame { inset: 8px; border-radius: 20px; }
+      .nav-links { display: none; }
+      .cta { padding: 11px 16px; font-size: 15px; }
+      .stat .ic { width: 44px; height: 44px; }
+    }
+    @media (max-width: 460px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ---------- contact modal ---------- */
+    .modal[hidden] { display: none; }
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 20, 15, .45);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+    }
+    .modal-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 400px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: clamp(28px, 4vw, 40px);
+      box-shadow: 0 30px 60px -20px rgba(30, 50, 35, .4);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 26px;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-card h2 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .modal-sub { color: var(--muted); font-size: 15px; margin-bottom: 22px; }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-list a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--cream);
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .contact-list a:hover { border-color: var(--green); color: var(--green); }
+    .contact-list svg { flex: none; color: var(--green); }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="inner">
+
+      <!-- NAV -->
+      <nav>
+        <div class="brand">
+          <span class="mark" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M13 3.5v6M13 16.5v6M3.5 13h6M16.5 13h6M6.2 6.2l4.2 4.2M15.6 15.6l4.2 4.2M19.8 6.2l-4.2 4.2M10.4 15.6l-4.2 4.2"/>
+              </g>
+              <circle cx="13" cy="13" r="2.4" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>Lea</span>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="background.html">Background</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="updates.html">Updates</a></li>
+        </ul>
+
+        <a class="cta" href="#contact" data-contact>
+          Get in Touch
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M4 11L11 4M11 4H5M11 4v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- HERO -->
+      <section class="hero">
+        <canvas id="hero-net" aria-hidden="true"></canvas>
+        <div class="hero-text">
+          <p class="greet">Hey there,</p>
+          <h1 class="headline">I&rsquo;m <em>Lea.</em></h1>
+          <p class="role">Product Manager &amp; Computer Scientist</p>
+          <p class="lede">
+            <strong>Building technology around humans.</strong><br />
+            Product thinking, engineering and research — combined to create
+            technology that feels simple, useful and human.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Product</span>
+            <span class="chip">Engineering</span>
+            <span class="chip">AI</span>
+            <span class="chip">HCI</span>
+          </div>
+        </div>
+
+        <div class="hero-graphic">
+        </div>
+      </section>
+
+      <!-- STATS (template placeholders) -->
+      <section class="stats">
+        <div class="stat">
+          <span class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3.5" y="3.5" width="15" height="15" rx="3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+          <div>
+            <div class="num">00+</div>
+            <div class="lbl">Placeholder label</div>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3.5" y="3.5" width="15" height="15" rx="3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+          <div>
+            <div class="num">00+</div>
+            <div class="lbl">Placeholder label</div>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3.5" y="3.5" width="15" height="15" rx="3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+          <div>
+            <div class="num">00+</div>
+            <div class="lbl">Placeholder label</div>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3.5" y="3.5" width="15" height="15" rx="3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+          <div>
+            <div class="num">00+</div>
+            <div class="lbl">Placeholder label</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ================= Contact popup ================= -->
+  <div class="modal" id="contactModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <button class="modal-close" data-close aria-label="Close">&times;</button>
+      <h2 id="contactTitle">Get in touch</h2>
+      <p class="modal-sub">I&rsquo;d love to hear from you.</p>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:hello@example.com">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            hello@example.com
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 8.98h4V21H3V8.98zM9 8.98h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.36c0-1.28-.02-2.93-1.78-2.93-1.78 0-2.05 1.39-2.05 2.83V21H9V8.98z"/></svg>
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="assets/contact.js"></script>
+
+  <!-- ================= Live network background (hero) ================= -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script>
+  (function () {
+    if (typeof THREE === 'undefined') return; // CDN blocked → hero just stays plain
+    const canvas = document.getElementById('hero-net');
+    if (!canvas) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // ---------- Palette (accents from network_mouse.html; bg matches site panel) ----------
+    const BG       = 0xf3f4ee; // = --panel, so the hero blends into the page
+    const NODE     = new THREE.Color(0x2d5f4f); // dark green
+    const LINE     = new THREE.Color(0x8a938c); // muted grey-green
+    const GLOW     = new THREE.Color(0xe8a33d); // amber (core)
+    const GLOW_OUT = new THREE.Color(0xe07856); // terracotta (halo)
+
+    // ---------- Simplex noise (Gustavson/Ashima, public domain) ----------
+    const SimplexNoise=function(){const F2=.5*(Math.sqrt(3)-1),G2=(3-Math.sqrt(3))/6;const p=new Uint8Array(256);const perm=new Uint8Array(512),permMod12=new Uint8Array(512);for(let i=0;i<256;i++)p[i]=i;for(let i=255;i>0;i--){const n=Math.floor(Math.random()*(i+1));const q=p[i];p[i]=p[n];p[n]=q;}for(let i=0;i<512;i++){perm[i]=p[i&255];permMod12[i]=perm[i]%12;}const grad3=new Float32Array([1,1,0,-1,1,0,1,-1,0,-1,-1,0,1,0,1,-1,0,1,1,0,-1,-1,0,-1,0,1,1,0,-1,1,0,1,-1,0,-1,-1]);return{noise2D:function(xin,yin){let n0=0,n1=0,n2=0;const s=(xin+yin)*F2;const i=Math.floor(xin+s),j=Math.floor(yin+s);const t=(i+j)*G2;const X0=i-t,Y0=j-t;const x0=xin-X0,y0=yin-Y0;let i1,j1;if(x0>y0){i1=1;j1=0;}else{i1=0;j1=1;}const x1=x0-i1+G2,y1=y0-j1+G2;const x2=x0-1+2*G2,y2=y0-1+2*G2;const ii=i&255,jj=j&255;let t0=.5-x0*x0-y0*y0;if(t0>=0){const gi=permMod12[ii+perm[jj]]*3;t0*=t0;n0=t0*t0*(grad3[gi]*x0+grad3[gi+1]*y0);}let t1=.5-x1*x1-y1*y1;if(t1>=0){const gi=permMod12[ii+i1+perm[jj+j1]]*3;t1*=t1;n1=t1*t1*(grad3[gi]*x1+grad3[gi+1]*y1);}let t2=.5-x2*x2-y2*y2;if(t2>=0){const gi=permMod12[ii+1+perm[jj+1]]*3;t2*=t2;n2=t2*t2*(grad3[gi]*x2+grad3[gi+1]*y2);}return 70*(n0+n1+n2);}};};
+    const simplex = new SimplexNoise();
+    const smooth = (e0, e1, x) => { const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+
+    // ---------- Renderer / scene ----------
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(BG, 1);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    camera.position.set(0, 0, 95);
+
+    // ---------- Node grid ----------
+    const COLS = 26, ROWS = 16;
+    const SPAN_X = 150, SPAN_Y = 90;
+    const nodes = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const jx = (Math.random() - 0.5) * (SPAN_X / COLS) * 1.4;
+        const jy = (Math.random() - 0.5) * (SPAN_Y / ROWS) * 1.4;
+        const x = -SPAN_X/2 + (c / (COLS - 1)) * SPAN_X + jx;
+        const y = -SPAN_Y/2 + (r / (ROWS - 1)) * SPAN_Y + jy;
+        const density = (c / COLS) * 0.5 + (r / ROWS) * 0.5;
+        if (Math.random() > density * 0.9 + 0.15) continue;
+        nodes.push({
+          home: new THREE.Vector3(x, y, 0),
+          pos: new THREE.Vector3(x, y, 0),
+          seed: Math.random() * 100,
+          size: 0.35 + Math.random() * (Math.random() < 0.12 ? 1.6 : 0.5),
+          gd: Math.hypot(x, y),   // distance from centre → drives the growth wave
+          grow: 0,
+          activation: 0,
+        });
+      }
+    }
+
+    const nodeGeo = new THREE.BufferGeometry();
+    const nodePos = new Float32Array(nodes.length * 3);
+    const nodeCol = new Float32Array(nodes.length * 3);
+    const nodeSize = new Float32Array(nodes.length);
+    nodeGeo.setAttribute('position', new THREE.BufferAttribute(nodePos, 3));
+    nodeGeo.setAttribute('ncolor', new THREE.BufferAttribute(nodeCol, 3));
+    nodeGeo.setAttribute('psize', new THREE.BufferAttribute(nodeSize, 1));
+
+    const uScale = { value: 1 };
+    const nodeMat = new THREE.ShaderMaterial({
+      transparent: true,
+      uniforms: { uScale },
+      vertexShader: `
+        attribute float psize;
+        attribute vec3 ncolor;
+        varying vec3 vColor;
+        uniform float uScale;
+        void main() {
+          vColor = ncolor;
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = psize * uScale / -mv.z;
+          gl_Position = projectionMatrix * mv;
+        }`,
+      fragmentShader: `
+        varying vec3 vColor;
+        void main() {
+          vec2 uv = gl_PointCoord - 0.5;
+          float d = length(uv);
+          float a = smoothstep(0.5, 0.42, d);
+          if (a <= 0.0) discard;
+          gl_FragColor = vec4(vColor, a);
+        }`
+    });
+    scene.add(new THREE.Points(nodeGeo, nodeMat));
+
+    // ---------- Connections ----------
+    const MAX_LINKS = nodes.length * 6;
+    const lineGeo = new THREE.BufferGeometry();
+    const linePos = new Float32Array(MAX_LINKS * 2 * 3);
+    const lineCol = new Float32Array(MAX_LINKS * 2 * 3);
+    lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
+    lineGeo.setAttribute('color', new THREE.BufferAttribute(lineCol, 3));
+    const lineMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.55 });
+    scene.add(new THREE.LineSegments(lineGeo, lineMat));
+
+    const LINK_DIST = 16;
+    const pairs = [];
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const d = nodes[i].home.distanceTo(nodes[j].home);
+        if (d < LINK_DIST) pairs.push({ a: i, b: j, base: 1 - d / LINK_DIST });
+      }
+    }
+
+    // ---------- Roaming glow (follows cursor) ----------
+    const glowGeo = new THREE.BufferGeometry();
+    glowGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3), 3));
+    const glowMat = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      uniforms: { uScale, uColor: { value: GLOW }, uColorOut: { value: GLOW_OUT } },
+      vertexShader: `
+        uniform float uScale;
+        void main() {
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = 9.0 * uScale / -mv.z;
+          gl_Position = projectionMatrix * mv;
+        }`,
+      fragmentShader: `
+        uniform vec3 uColor;
+        uniform vec3 uColorOut;
+        void main() {
+          vec2 uv = gl_PointCoord - 0.5;
+          float d = length(uv);
+          vec3 col = mix(uColor, uColorOut, smoothstep(0.0, 0.5, d));
+          float core = smoothstep(0.5, 0.0, d);
+          float halo = smoothstep(0.5, 0.15, d);
+          gl_FragColor = vec4(col, core * 0.9 + halo * 0.35);
+        }`
+    });
+    scene.add(new THREE.Points(glowGeo, glowMat));
+    const glow = { pos: new THREE.Vector3(0, 0, 0), seedX: Math.random() * 100, seedY: Math.random() * 100 };
+
+    // ---------- Cursor as the "human" signal ----------
+    const mouse = { active: false, lastMove: -10 };
+    const ndc = new THREE.Vector2();
+    const rayPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+    const raycaster = new THREE.Raycaster();
+    const worldTarget = new THREE.Vector3();
+
+    window.addEventListener('pointermove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                     e.clientY >= rect.top  && e.clientY <= rect.bottom;
+      if (!inside) { mouse.active = false; return; }
+      ndc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      ndc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      mouse.active = true;
+      mouse.lastMove = clock.getElapsedTime();
+    }, { passive: true });
+
+    // ---------- Sizing ----------
+    function resize() {
+      const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      uScale.value = renderer.getPixelRatio() * h / 2;
+    }
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize);
+
+    // ---------- Animate ----------
+    const clock = new THREE.Clock();
+    const REACT_RADIUS = 22;
+
+    function animate() {
+      const t = clock.getElapsedTime();
+      const idle = (t - mouse.lastMove) > 2.5 || !mouse.active;
+      let targetX, targetY;
+      if (idle) {
+        targetX = simplex.noise2D(glow.seedX, t * 0.06) * (SPAN_X * 0.52);
+        targetY = simplex.noise2D(glow.seedY, t * 0.06) * (SPAN_Y * 0.52);
+      } else {
+        raycaster.setFromCamera(ndc, camera);
+        raycaster.ray.intersectPlane(rayPlane, worldTarget);
+        targetX = worldTarget.x; targetY = worldTarget.y;
+      }
+      glow.pos.x += (targetX - glow.pos.x) * (idle ? 0.04 : 0.15);
+      glow.pos.y += (targetY - glow.pos.y) * (idle ? 0.04 : 0.15);
+      glowGeo.attributes.position.array[0] = glow.pos.x;
+      glowGeo.attributes.position.array[1] = glow.pos.y;
+      glowGeo.attributes.position.array[2] = 2;
+      glowGeo.attributes.position.needsUpdate = true;
+
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        const flow = simplex.noise2D(n.home.x * 0.03 + t * 0.08, n.home.y * 0.03) * 6;
+        n.pos.x = n.home.x + simplex.noise2D(n.seed, t * 0.05) * 1.5;
+        n.pos.y = n.home.y + simplex.noise2D(n.seed + 50, t * 0.05) * 1.5;
+        n.pos.z = flow;
+
+        const dx = n.pos.x - glow.pos.x, dy = n.pos.y - glow.pos.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const target = dist < REACT_RADIUS ? (1 - dist / REACT_RADIUS) : 0;
+        n.activation += (target - n.activation) * 0.12;
+
+        nodePos[i*3] = n.pos.x; nodePos[i*3+1] = n.pos.y; nodePos[i*3+2] = n.pos.z;
+        const col = NODE.clone().lerp(GLOW, n.activation * 0.85);
+        nodeCol[i*3] = col.r; nodeCol[i*3+1] = col.g; nodeCol[i*3+2] = col.b;
+        // full network is present immediately; a growth wave keeps pulsing outward
+        n.grow = 1;
+        const ripple = Math.pow(Math.max(0, Math.sin(t * 0.85 - n.gd * 0.12)), 3);
+        nodeSize[i] = n.size * (1 + ripple * 0.8 + n.activation * 2.2);
+      }
+      nodeGeo.attributes.position.needsUpdate = true;
+      nodeGeo.attributes.ncolor.needsUpdate = true;
+      nodeGeo.attributes.psize.needsUpdate = true;
+
+      let li = 0;
+      for (let p = 0; p < pairs.length; p++) {
+        const pr = pairs[p];
+        const na = nodes[pr.a], nb = nodes[pr.b];
+        const act = Math.max(na.activation, nb.activation);
+        const alpha = (pr.base * 0.28 + act * 0.9) * Math.min(na.grow, nb.grow);
+        if (alpha < 0.04) continue;
+        if (li >= MAX_LINKS) break;
+        const o = li * 6;
+        linePos[o]   = na.pos.x; linePos[o+1] = na.pos.y; linePos[o+2] = na.pos.z;
+        linePos[o+3] = nb.pos.x; linePos[o+4] = nb.pos.y; linePos[o+5] = nb.pos.z;
+        const lc = LINE.clone().lerp(GLOW, act);
+        const shade = Math.min(1, alpha);
+        for (let k = 0; k < 2; k++) {
+          lineCol[o+k*3]   = lc.r * shade + (1-shade) * 0.953;
+          lineCol[o+k*3+1] = lc.g * shade + (1-shade) * 0.957;
+          lineCol[o+k*3+2] = lc.b * shade + (1-shade) * 0.933;
+        }
+        li++;
+      }
+      lineGeo.setDrawRange(0, li * 2);
+      lineGeo.attributes.position.needsUpdate = true;
+      lineGeo.attributes.color.needsUpdate = true;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    resize();
+    animate();
+  })();
+  </script>
+</body>
+</html>
