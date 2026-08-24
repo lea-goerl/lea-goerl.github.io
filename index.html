@@ -67,7 +67,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: clamp(12px, 2.5vw, 24px);
+      flex-wrap: wrap;
     }
     .brand {
       display: flex;
@@ -83,16 +84,18 @@
 
     .nav-links {
       display: flex;
-      gap: clamp(20px, 2.6vw, 44px);
+      flex-wrap: wrap;
+      gap: clamp(14px, 2.6vw, 44px);
       list-style: none;
     }
     .nav-links a {
       position: relative;
       text-decoration: none;
       color: var(--ink-2);
-      font-size: 16px;
+      font-size: clamp(14px, 1.6vw, 16px);
       font-weight: 500;
       padding: 4px 0;
+      white-space: nowrap;
       transition: color .2s ease;
     }
     .nav-links a:hover { color: var(--green); }
@@ -258,9 +261,18 @@
     }
     @media (max-width: 760px) {
       .frame { inset: 8px; border-radius: 20px; }
-      .nav-links { display: none; }
       .cta { padding: 11px 16px; font-size: 15px; }
       .stat .ic { width: 44px; height: 44px; }
+    }
+    @media (max-width: 560px) {
+      nav { justify-content: center; }
+      .brand { font-size: 20px; }
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 24px;
+      }
     }
     @media (max-width: 460px) {
       .stats { grid-template-columns: 1fr 1fr; }
@@ -352,10 +364,10 @@
         </div>
 
         <ul class="nav-links">
-          <li><a href="background.html">Background</a></li>
+          <!-- <li><a href="background.html">Background</a></li> -->
           <li><a href="projects.html">Projects</a></li>
           <li><a href="research.html">Research</a></li>
-          <li><a href="updates.html">Updates</a></li>
+          <!-- <li><a href="updates.html">Updates</a></li> -->
         </ul>
 
         <a class="cta" href="#contact" data-contact>
@@ -392,6 +404,7 @@
       </section>
 
       <!-- STATS (template placeholders) -->
+      <!--
       <section class="stats">
         <div class="stat">
           <span class="ic" aria-hidden="true">
@@ -430,6 +443,8 @@
           </div>
         </div>
       </section>
+      -->
+
 
     </div>
   </div>
