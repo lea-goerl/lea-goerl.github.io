@@ -131,7 +131,7 @@
     /* ---------- hero ---------- */
     .hero {
       position: relative;
-      flex: 1;
+      flex: 1 0 auto;
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
       align-items: center;
@@ -216,6 +216,36 @@
       width: 100%;
       height: 100%;
       display: block;
+    }
+
+    /* ---------- about / me ---------- */
+    .about {
+      position: relative;
+      z-index: 1;
+      margin-top: clamp(20px, 3vh, 40px);
+      padding-top: clamp(22px, 3vh, 36px);
+      border-top: 1px solid var(--line);
+    }
+    .about-card {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: clamp(22px, 3vw, 34px) clamp(24px, 3.4vw, 40px);
+    }
+    .about-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .about-text {
+      font-size: clamp(16px, 1.35vw, 19px);
+      line-height: 1.7;
+      color: var(--ink-2);
+      max-width: 62em;
     }
 
     /* ---------- stats ---------- */
@@ -400,6 +430,20 @@
         </div>
 
         <div class="hero-graphic">
+        </div>
+      </section>
+
+      <!-- ABOUT / ME -->
+      <section class="about">
+        <div class="about-card">
+          <span class="about-label">Me</span>
+          <p class="about-text">
+            Growing up on an organic farm taught me to be hands-on and gave me an
+            early sense of how closely natural, technical, and human systems are
+            connected. It taught me to stick with what I believe in and enjoy
+            crossing disciplines, looking at things from different angles and,
+            whenever possible, seeing the bigger, more holistic picture.
+          </p>
         </div>
       </section>
 

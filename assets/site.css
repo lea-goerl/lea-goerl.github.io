@@ -283,6 +283,125 @@ nav {
 }
 .card-media:has(img)::after { display: none; }
 
+/* "coming soon" placeholder for projects still in progress */
+.card-ph {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.card-media:has(.card-ph)::after { display: none; }
+.card-ph svg { opacity: .85; }
+.card-ph .card-ph-text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.card-ph .card-ph-sub {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 26ch;
+  opacity: .78;
+}
+/* light text on dark gradients, dark text on light ones */
+.card-media.m-b .card-ph,
+.pm-media.m-b .card-ph { color: #f3f4ee; }
+.card-media.m-c .card-ph, .pm-media.m-c .card-ph,
+.card-media.m-d .card-ph, .pm-media.m-d .card-ph,
+.card-media.m-e .card-ph, .pm-media.m-e .card-ph,
+.card-media.m-f .card-ph, .pm-media.m-f .card-ph { color: var(--ink); }
+
+/* ---------- image carousel (cards + detail view) ---------- */
+/* activated automatically whenever a media block holds more than one image */
+.has-carousel::after { display: none !important; }
+.carousel-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  height: 100%;
+  transition: transform .4s cubic-bezier(.4, 0, .2, 1);
+}
+.card-media .carousel-track img,
+.pm-media .carousel-track img {
+  position: static;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* a slide shown in full (uncropped), letterboxed on the card's own colour so it blends in */
+.card-media .carousel-track img.is-contain,
+.pm-media .carousel-track img.is-contain {
+  object-fit: contain;
+  background: var(--cream);
+}
+/* video slide (16:9): fills the frame like a cover image */
+.card-media .carousel-track video,
+.pm-media .carousel-track video {
+  position: static;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: rgba(20, 20, 15, .42);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: background .2s ease, opacity .2s ease;
+}
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+.carousel-btn:hover { background: rgba(20, 20, 15, .72); }
+/* on the card the arrows fade in on hover; in the detail view they stay visible */
+.card-media:hover .carousel-btn,
+.card-media:focus-within .carousel-btn,
+.pm-media .carousel-btn { opacity: 1; }
+.carousel-count {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(20, 20, 15, .42);
+  padding: 3px 9px;
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+@media (hover: none) {
+  .card-media .carousel-btn { opacity: 1; }  /* touch devices: always show */
+}
+
 .card-body {
   display: flex;
   flex-direction: column;
@@ -578,7 +697,7 @@ nav {
   padding: 0;
 }
 .pm-media {
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 9;
   border-radius: 20px 20px 0 0;
   background: linear-gradient(135deg, #cdd8cf, #9fb6a6);
   overflow: hidden;
@@ -675,6 +794,46 @@ nav {
 .pm-link:hover { background: #163a28; transform: translateY(-1px); }
 .pm-link[hidden] { display: none; }
 .pm-link svg { display: block; }
+
+/* ---------- embedded PDF viewer (project detail) ---------- */
+.pm-pdf[hidden] { display: none; }
+.pm-pdf {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.pm-pdf-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.pm-pdf-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.pm-pdf-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+}
+.pm-pdf-open:hover { color: #163a28; }
+.pm-pdf-open svg { display: block; }
+.pm-pdf-frame {
+  width: 100%;
+  height: min(72vh, 640px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  display: block;
+}
 
 /* ============================================================
    Research page
