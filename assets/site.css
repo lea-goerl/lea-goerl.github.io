@@ -753,6 +753,8 @@ nav {
   color: var(--ink-2);
   margin-bottom: 20px;
 }
+.pm-desc p { margin: 0 0 12px; }
+.pm-desc p:last-child { margin-bottom: 0; }
 .pm-highlights {
   list-style: none;
   display: flex;

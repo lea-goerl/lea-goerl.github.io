@@ -116,7 +116,10 @@
           <div class="cards">
 
             <article class="card"
-              data-summary="Development of a tangible, voice-based interaction system that enables older adults to preserve and share personal memories without requiring technical expertise. The prototype combines a physical wooden cube with a microcontroller, a Flutter-based companion app, and a backend connecting both components. Users interact by rotating the cube to different sides to record or play voice messages, supported by visual feedback and voice recognition. Recordings are transferred to the app, where LLM-based processing summarizes and organizes stories into a chronological, person-specific family timeline&mdash;combining tangible interaction, embedded hardware, mobile development, and AI.">
+              data-summary="Many older adults find it difficult to stay connected with their families through digital technology. At the same time, personal stories and memories can easily get lost when there is no simple way to capture them. We wanted to find a way to make sharing these stories easy and intuitive, without requiring technical knowledge.
+We developed a physical, voice-based cube that lets users record and share memories with family members. By turning the cube to a specific side, users select the person they want to share a story with, while a button and visual feedback keep the interaction simple. The recorded stories appear in a companion app, where they are organized into a personal timeline.
+On the technical side, we built the complete prototype ourselves, combining hardware, a Flutter app, a Firebase backend, and AI processing. The cube uses a Raspberry Pi Zero, gyroscope, microphone, LEDs, and physical controls. Recorded audio is sent to the backend, transcribed with Whisper, and processed with an LLM to extract relevant information for organizing the stories in the app.
+Through testing, we learned how important small interaction details were for our target group. We went through two iterations of the cube, simplified the interaction around a physical button, and added photos to make choosing a family member easier and more personal. We also found that older users cared more about having an easy way to share stories, while younger users especially valued having those stories preserved for the future.">
               <div class="card-media m-e" aria-hidden="true">
                 <!-- BILDER (Reihenfolge = Karussell): assets/img/storycube-*.jpg
                      Bild 0 (Illustration) füllt die Karte; die übrigen werden komplett gezeigt (is-contain, Cremehintergrund). -->
@@ -151,7 +154,10 @@
           <div class="cards">
 
             <article class="card"
-              data-summary="Mert is a concept for a smart cycling jacket designed for everyday mobility in Munich 2035. Developed through a user-centered design process, the project explored how cycling could remain safe, comfortable and accessible despite extreme temperatures, increasing bicycle traffic and changing urban infrastructure. Interviews, ideation and iterative prototyping led to four central design pillars: Adaptive Climate, Impact Protection, Intuitive &amp; Accessible Controls, and Modular &amp; Customizable Design. Adaptive Climate combines micro-ventilators for cooling with an integrated heating system for colder conditions. Impact Protection uses a soft interior material designed to harden in the event of a fall. Intuitive &amp; Accessible Controls include automatic wear detection, a small temperature display and a magnetic dial that can be repositioned for different users and needs. Finally, Modular &amp; Customizable Design allows users to personalize the jacket while replaceable magnetic components make repairs easier and extend the product&rsquo;s lifetime. Together, these features turn Mert into an adaptable everyday companion rather than specialized cycling equipment."
+              data-summary="What could everyday cycling look like in Munich in 2035? We imagined a future shaped by climate change, growing bicycle traffic, and changing urban infrastructure, and asked how cycling could remain safe, comfortable, and accessible for very different types of people. Interviews with everyday cyclists and someone working in the cycling industry showed that extreme temperatures and the trade-off between protection and comfort were particularly important concerns.
+We used these insights to explore several concepts before narrowing them down based on their expected user impact and feasibility. This process led to Mert, a smart cycling jacket built around climate adaptation, impact protection, accessible interaction, and customization. The concept combines heating and cooling, a protective material designed to harden on impact, automatic wear detection, and a magnetic temperature control that can be positioned differently depending on the user's needs.
+Rather than building a fully functional technical product, we focused on the physical design and interaction. We moved from sketches to several physical prototypes using an existing jacket, magnetic components, tactile controls, and interchangeable screen mock-ups. Feedback led us to reduce the number of digital interactions, replace the on/off button with automatic wear detection, introduce movable magnetic controls, and eventually remove the planned navigation feature because users saw little added value compared with existing solutions.
+The project showed us how much a product can improve by removing ideas rather than continuously adding new ones. Features that seemed useful during ideation did not always survive feedback and prototyping, while accessibility and simplicity became more important as the concept evolved. We also considered the product beyond its initial use: modular, replaceable controls were designed to make repairs easier, adapt the jacket to different users, and extend its lifetime rather than requiring the entire product to be replaced."
               data-highlights="Human-Centered Product Design | UX Research | Physical Prototyping | Focused on the design process for physical prototyping with an emphasis on circular design, rather than building a fully functional prototype">
               <div class="card-media" aria-hidden="true">
                 <!-- BILDER + VIDEO (Reihenfolge = Karussell): assets/img/mert-*
@@ -173,7 +179,10 @@
             </article>
 
             <article class="card"
-              data-summary="MoodMuse is an AI-powered music generation tool that transforms emotions captured in photos or videos into personalized music. Instead of relying solely on text prompts, the system uses facial emotion recognition to identify emotions such as happiness, sadness, surprise or anger and translates them into musical characteristics such as melody, rhythm, tempo, harmony, dynamics and instrumentation. Behind MoodMuse is a multi-stage AI pipeline combining computer vision, algorithmic composition and generative AI. Facial emotions are detected using FER2013-based emotion recognition, translated into musical parameters, and used to generate melodies in Python. These melodies are then refined with MusicGen, adding elements such as genre, instruments, accompaniment and dynamics to create a coherent soundtrack that reflects the emotional progression of the original visual input. Users can additionally select a genre and instrument, combining emotional recognition with personal musical preferences."
+              data-summary="Music is often used to shape the mood of photos and videos, but finding the right soundtrack usually means searching through existing songs or describing the desired mood in words. We wanted to explore whether the emotions already visible in an image or video could become the input for generating a fitting piece of music instead.
+We developed MoodMuse, a tool that turns emotions detected in photos or videos into personalized music. Instead of starting with a text prompt, the system recognizes facial expressions and maps emotions such as happiness, sadness, surprise, or anger to musical characteristics including melody, rhythm, tempo, harmony, and dynamics. Users can also choose a genre and instrument, combining the detected emotional progression with their own musical preferences.
+Technically, we built a multi-stage pipeline combining computer vision, algorithmic composition, and generative AI. Facial emotions are detected using FER2013-based emotion recognition with MTCNN and mini-Xception. We then translate the detected emotions into musical parameters and generate melodies in Python using MIDIUtil. MusicGen takes these melodies as conditioning input and adds genre, instrumentation, accompaniment, and dynamics to produce the final soundtrack.
+Building and testing the pipeline showed us where generative music models were still unpredictable. Short or overly long melodies could reduce output quality, and adding more detailed prompts did not necessarily improve the result. We found that concise prompts and carefully chosen melody lengths worked better. We also learned that we had started with too broad a scope and that focusing earlier on the core interaction would have made development more effective."
               data-highlights="AI Development | Affective Computing | Computer Vision">
               <div class="card-media m-b" aria-hidden="true">
                 <!-- BILD folgt: assets/img/moodmuse.jpg -->
@@ -188,7 +197,7 @@
               </div>
               <div class="card-body">
                 <div class="card-tags"><span class="tag is-finished">Completed</span><span class="tag">AI Development</span><span class="tag">Computer Vision</span></div>
-                <h3 class="card-title">MoodMuse &ndash; Music that feels what you feel</h3>
+                <h3 class="card-title">MoodMuse &ndash; Turning Emotions into Music</h3>
                 <p class="card-desc">Making music with affective computing and empathic artificial intelligence.</p>
                 <div class="card-foot">
                   <a class="view-link" href="#">View Project
@@ -199,9 +208,11 @@
             </article>
 
             <article class="card"
-              data-summary="In cooperation with the Bundeswehr University Munich, development of an autonomous drone prototype to support volunteer rescue teams in locating missing persons and assessing their mobility. The system combines autonomous grid-based flight with a real-time video pipeline and Google MediaPipe Pose, extracting 33 body landmarks from camera frames to detect individuals and analyze movement. A custom evaluation logic translates detected landmarks and movement points into an activity score as an initial indicator of mobility. The architecture integrates drone control, video streaming, pose detection, and a custom GUI, with a particular focus on parallel processing to enable flight control and computer-vision analysis to operate simultaneously."
-              data-highlights="Software Engineering | Computer Vision | Drone Control | UI Development"
-              data-pdf="assets/docs/LifeScout.pdf">
+              data-summary="Searching for missing persons can require large teams, especially in difficult-to-access or extensive areas. Volunteer rescue teams often step in early, but professional drone systems require trained operators and can be expensive. We wanted to explore whether a smaller, autonomous drone could support volunteers in locating missing people faster and provide an initial indication of their mobility once found.
+We developed Life Scout as a prototype that combines autonomous search with computer-vision-based mobility assessment. The drone follows a grid-based search pattern while transmitting video to a dashboard. Once a person is detected, the idea is to use their body position and movement to give rescue teams an early indication of the situation before they reach the person. The interface brings together drone control, the live video stream, detected body position, and an activity score.
+Technically, we connected drone control, video streaming, pose detection, and a custom GUI through several parallel processes. Google MediaPipe Pose extracts 33 body landmarks from individual frames, which we used as the basis for detecting body position and estimating movement. We developed our own evaluation logic that combines detection and movement points into an activity score. A central engineering challenge was running autonomous flight and computer-vision analysis at the same time without blocking the drone controls.
+The project also showed us the limitations of our initial technical approach. Frame differencing was too sensitive to movement from the drone itself, while feature detection worked better but still depended on flight direction. Parallelizing flight control, video processing, and pose evaluation turned out to be the main technical bottleneck, and we were only able to complete parts of the intended system within the project timeframe. This made the trade-off between an ambitious system concept and a technically reliable core prototype very tangible."
+              data-highlights="Software Engineering | Computer Vision | Drone Control | UI Development">
               <div class="card-media m-c" aria-hidden="true">
                 <!-- BILD: assets/img/lifescout-0.jpg -->
                 <img src="assets/img/lifescout-0.jpg" alt="Life Scout drone and pose-detection concept" loading="lazy" />
@@ -231,7 +242,10 @@
           <div class="cards">
 
             <article class="card"
-              data-summary="Mentalynx explores how personal emotions can be transformed into a physical, evolving piece of art without relying on screens or explicitly exposing mental-health data. Designed as an interactive artwork for the home, it allows users to reflect on their emotional state in the morning or evening through a simple physical input. Instead of displaying moods as numbers, graphs or labels, Mentalynx translates them into an abstract visual composition that remains meaningful primarily to its owner. The installation consists of a frame containing multiple individually rotatable, multi-colored cubes. After the user selects their current mood on a discreet dial, an algorithm translates this input into a new composition: the dominant color represents the selected emotion, while secondary colors and randomized cube rotations ensure that every visualization is unique. Built using Arduino-based hardware, custom programming and 3D-printed components, Mentalynx turns otherwise invisible emotional data into a tangible and private form of data physicalisation &ndash; creating an artwork that continuously changes alongside its user."
+              data-summary="Emotional data is usually captured and displayed through apps, charts, or explicit labels. We wanted to explore a more private and physical way of reflecting on emotions: one that could become part of the home without openly revealing what the underlying data means to anyone else.
+We designed Mentalynx as an interactive artwork that changes with its owner's emotional state. Users select how they feel through a discreet dial underneath the frame. Instead of displaying the mood directly, the input is translated into an abstract composition of colored cubes. The visualization remains understandable to its owner while appearing simply as an evolving piece of art to others.
+Technically, we built the installation using Arduino-based hardware, custom programming, servo motors, and 3D-printed components. Each cube can rotate independently to reveal different colored sides. An algorithm maps the selected mood to a dominant color and determines how the individual cubes rotate, creating a different physical composition with each input.
+Building the physical prototype also came with practical challenges. The combination of 3D-printed parts, rotating cubes, and Arduino-controlled hardware made mechanical stability and reliable movement harder than expected. Getting the physical components to work consistently showed us how different prototyping becomes once software has to interact with real hardware. At the same time, the project made us think differently about personal data: information does not always need to become more explicit to become useful. By keeping the visualization abstract, Mentalynx allowed users to reflect on emotions without turning them into another metric or openly exposing them to others."
               data-highlights="Hardware Prototyping | Tangible Interface | Data Physicalisation">
               <div class="card-media m-f" aria-hidden="true">
                 <!-- BILDER (Reihenfolge = Karussell): assets/img/mentalynx-*.jpg
@@ -245,7 +259,7 @@
               </div>
               <div class="card-body">
                 <div class="card-tags"><span class="tag is-finished">Completed</span><span class="tag">Hardware Prototyping</span><span class="tag">Data Physicalisation</span></div>
-                <h3 class="card-title">Mentalynx &ndash; Physicalising Emotional Data without exposing them</h3>
+                <h3 class="card-title">Turning Emotions into Physical Art</h3>
                 <p class="card-desc">Sketching with hardware &ndash; data physicalisation for mental health.</p>
                 <div class="card-foot">
                   <a class="view-link" href="#">View Project
@@ -256,7 +270,10 @@
             </article>
 
             <article class="card"
-              data-summary="UrbanPulse is a speculative Smart City application that transforms public lighting into a shared and customizable urban experience. Through an interactive city map, users can discover and reserve smart streetlights for themselves or groups and personalize their surroundings by adjusting light color and brightness, connecting music, or sending light signals to friends. The concept aims to strengthen social interaction and give citizens a more active role in shaping public spaces. At the same time, UrbanPulse explores how smart infrastructure can support more sustainable cities. Lights can be reduced or switched off when they are not needed, while a consumption dashboard makes users aware of the energy generated by their bookings. Features such as booking history, group reservations, navigation and an integrated SOS function connect personalization with sustainability, community and safety."
+              data-summary="Public infrastructure is usually designed and controlled by cities, leaving little room for citizens to shape the spaces around them. We wanted to explore what would happen if smart city infrastructure became more interactive: could public lighting create more personal and social spaces while also encouraging more conscious energy use?
+We developed UrbanPulse, a speculative smart city app that lets individuals and groups find and reserve smart streetlights and customize the atmosphere around them. Users can adjust light color and brightness, connect music, invite friends to bookings, and send light signals to each other. A consumption dashboard makes the energy used through bookings visible, while lights could be dimmed or switched off when they are not needed.
+We followed a user-centered design process, starting with benchmarking existing lighting applications and mapping their user flows before developing personas and an empathy map. After exploring several concepts, we turned UrbanPulse into a high-fidelity interactive prototype. We designed the complete experience around a custom city map and created our own illustrations, interactions, and animations, including gesture-based light controls and visual feedback for bookings and availability.
+Throughout the design process, feedback made us question several parts of the original concept. Charging users for access to public lighting conflicted with our goal of creating inclusive public spaces, while location sharing, emergency features, and control over public infrastructure introduced privacy and safety concerns. We also moved the SOS function directly to the main screen after realizing that an emergency feature should never require navigating through several screens. These discussions showed us that designing for public infrastructure means balancing personalization with accessibility, safety, sustainability, and the needs of everyone sharing the space."
               data-highlights="Interactive App Design">
               <div class="card-media m-d" aria-hidden="true">
                 <!-- BILDER (Reihenfolge = Karussell): assets/img/urbanpulse-*.jpg
@@ -269,7 +286,7 @@
               </div>
               <div class="card-body">
                 <div class="card-tags"><span class="tag is-finished">Completed</span><span class="tag">App Design</span><span class="tag">Smart City</span></div>
-                <h3 class="card-title">UrbanPulse &ndash; Shaping Public Spaces Through Light</h3>
+                <h3 class="card-title">UrbanPulse &ndash; Rethinking Public Space Through Light</h3>
                 <p class="card-desc">Your unique atmosphere in public places.</p>
                 <div class="card-foot">
                   <a class="view-link" href="#">View Project
@@ -330,7 +347,8 @@
           <div class="cards">
 
             <article class="card" id="mystress"
-              data-summary="myStress investigates how technostress can be detected through technical usage behavior. The project combines research with the design and development of an app that draws on how people interact with their devices to surface early indicators of stress.">
+              data-summary="myStress investigates how technostress can be detected through technical usage behavior. The project combines research with the design and development of an app that draws on how people interact with their devices to surface early indicators of stress.
+More information coming soon...">
               <div class="card-media m-d" aria-hidden="true">
                 <!-- BILD folgt: assets/img/mystress.jpg -->
                 <div class="card-ph">
@@ -372,7 +390,7 @@
         <div class="pm-tags"></div>
         <h2 class="pm-title" id="pmTitle"></h2>
         <dl class="pm-meta"></dl>
-        <p class="pm-desc"></p>
+        <div class="pm-desc"></div>
         <ul class="pm-highlights"></ul>
         <a class="pm-link" href="#" target="_blank" rel="noopener noreferrer" hidden>
           Visit Project
@@ -560,9 +578,17 @@
       addMeta('Role', d.role);
       addMeta('Timeframe', d.timeframe);
 
-      // description — richer data-summary if present, else the card blurb
+      // description — richer data-summary if present, else the card blurb.
+      // Split on newlines so multi-paragraph summaries render as paragraphs.
       const desc = cardEl.querySelector('.card-desc');
-      elDesc.textContent = d.summary || (desc ? desc.textContent : '');
+      const summaryText = d.summary || (desc ? desc.textContent : '');
+      elDesc.innerHTML = '';
+      summaryText.split('\n').map(function (s) { return s.trim(); })
+        .filter(Boolean).forEach(function (para) {
+          const p = document.createElement('p');
+          p.textContent = para;
+          elDesc.appendChild(p);
+        });
 
       // highlights — pipe-separated list in data-highlights
       elHigh.innerHTML = '';
