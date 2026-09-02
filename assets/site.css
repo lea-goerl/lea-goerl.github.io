@@ -691,7 +691,7 @@ nav {
 /* ---------- project detail overlay ---------- */
 .card { cursor: pointer; }
 .project-modal .modal-card {
-  max-width: 560px;
+  max-width: 720px;
   max-height: 88vh;
   overflow-y: auto;
   padding: 0;
